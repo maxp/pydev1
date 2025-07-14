@@ -1,0 +1,29 @@
+[project]
+name = "pydev1"
+version = "0.1.0"
+description = "Dev Demo Project"
+readme = "README.md"
+authors = [{name = "Maxim Penzin", email = "m@penzin.ru"}]
+requires-python = ">=3.12"
+dependencies = [
+    "aiosqlite>=0.21.0",
+    "fastapi[standard] >=0.116.0",
+    "pydantic-settings>=2.10.1",
+    "sqlalchemy >=2.0.41",
+]
+
+[tool.ruff]
+line-length = 100
+exclude = ["venv", ".venv", "build", "dist"]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]  # E: pycodestyle, F: pyflakes, I: isort, UP: pyupgrade
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "single"  # or "double"
+indent-style = "space"
+
+[tool.setuptools]
+packages = ["app"]
