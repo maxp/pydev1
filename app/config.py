@@ -1,12 +1,8 @@
-
-# from functools import lru_cache
-
 from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
     app_name: str = "FastAPI App"
-    # database_url: str = "postgresql://user:password@localhost/dbname"
     database_url: str = "sqlite:///./tmp/pydev1.db"
     database_debug: bool = True
 
@@ -19,7 +15,3 @@ class Settings(BaseSettings):
 
 
 conf = Settings()
-
-# @lru_cache
-# def get_settings():
-#     return Settings()

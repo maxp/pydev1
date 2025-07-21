@@ -1,6 +1,6 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from .models import Task, TaskComment, TaskState
+from app.models import Task, TaskComment, TaskState
 
 
 def get_task(db: Session, task_id: str) -> Task | None:
@@ -24,7 +24,7 @@ def update_task(db: Session,
     if not task:
         return None
 
-    # NOTE: setattr() for attribute list
+    # NOTE: setattr() for a in attr_list
     if descr is not None:
         task.descr = descr
     if status is not None:

@@ -6,8 +6,7 @@ export
 
 install:
 	uv sync
-	uv tool install ruff
-	uv tool install httpie
+#	uv tool install ruff
 
 dev:
 	fastapi dev app/main.py
@@ -26,21 +25,11 @@ image:
 run-image:
 	docker run -p 8000:8000 pydev1
 
-
 test:
-	echo "Test"
-
-lint:
-	uvx ruff check app --fix
-
-check:
-	uvx ruff check app
-
-format:
-	uvx ruff format app
+	pytest -o log_cli=true --log-level=INFO test/
 
 clean:
 	rm -rf .venv __pycache__ .ruff_cache
 
 
-.PHONY: clean test
+.PHONY: clean dev lab image run run-image test

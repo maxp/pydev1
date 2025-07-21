@@ -17,22 +17,23 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-# NOTE: fix lifecycle
+# NOTE: dev lifecycle not for production
 init_db(Base)
 
 
 app = FastAPI(
     docs_url=conf.openapi_docs, 
     redoc_url=conf.openapi_redoc,
-    # NOTE: dependencies=[Depends(...)]
 )
 
 app.include_router(router, prefix="/api")
 
 @app.get("/")
 def root():
+    """Demo application root page"""
     return {
         "message": "dev demo root",
+        "api_url": "/api",
         "docs_url": conf.openapi_docs, 
         "redoc_url": conf.openapi_redoc, 
         }
