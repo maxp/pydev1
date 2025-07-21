@@ -21,11 +21,10 @@ class Task(Base):
     descr:  Mapped[str] = mapped_column(String(4000))
     status: Mapped[int] = mapped_column(Integer, nullable=False, default=TaskState.ACTIVE)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
-    # updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)                                               
     assigned_to: Mapped[str | None] = mapped_column(String(100)) # NOTE: external reference scope
    
     comments: Mapped[list["Comment"]] = relationship(
-        "Comments", 
+        "TaskComment", 
         back_populates="task", 
         cascade="all, delete-orphan"
     )
@@ -34,7 +33,7 @@ class Task(Base):
         return f"<Task(id={self.id}, status='{self.status}', assigned_to='{self.assigned_to}')>"
 
 
-class Comments(Base):
+class TaskComment(Base):
     __tablename__ = "comments"
 
     id:   Mapped[int] = mapped_column(primary_key=True)
