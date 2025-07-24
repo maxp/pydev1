@@ -1,7 +1,7 @@
 from enum import IntEnum
 from datetime import datetime
 
-from sqlalchemy import Integer, String, DateTime, Enum, ForeignKey
+from sqlalchemy import Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
@@ -23,7 +23,7 @@ class Task(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     assigned_to: Mapped[str | None] = mapped_column(String(100)) # NOTE: external reference scope
    
-    comments: Mapped[list["Comment"]] = relationship(
+    comments: Mapped[list["TaskComment"]] = relationship(
         "TaskComment", 
         back_populates="task", 
         cascade="all, delete-orphan"
